@@ -1,0 +1,101 @@
+<div id="detail-component">
+    <app-menu></app-menu>
+    <div class="container-body">
+        <div class="container" *ngIf="!loading">
+            <div class="cards"> 
+                <div class="title">{{data.name}}</div>
+                <div class="details"> 
+                    <p class="category__paragraph" style="margin-top: 15px;">
+                        <span _ngcontent-c8="" class="characteristics">
+                            Height:
+                        </span>
+                        {{data.height}}
+                    </p>
+                    <p class="category__paragraph">
+                        <span _ngcontent-c8="" class="characteristics">
+                            mass:
+                        </span>
+                        {{data.mass}}
+                    </p>
+                    <p class="category__paragraph">
+                        <span _ngcontent-c8="" class="characteristics">
+                            hair_color:
+                        </span>
+                        {{data.hair_color}}
+                    </p>
+                    <p class="category__paragraph">
+                        <span _ngcontent-c8="" class="characteristics">
+                            skin_color:
+                        </span>
+                        {{data.skin_color}}
+                    </p>
+                    <p class="category__paragraph">
+                        <span _ngcontent-c8="" class="characteristics">
+                            eye_color:
+                        </span>
+                        {{data.eye_color}}
+                    </p>
+                    <p class="category__paragraph">
+                        <span _ngcontent-c8="" class="characteristics">
+                            birth_year:
+                        </span>
+                        {{data.birth_year === 'unknown' ? '-' : data.birth_year}}
+                    </p>
+                    <p class="category__paragraph">
+                        <span _ngcontent-c8="" class="characteristics">
+                            gender:
+                        </span>
+                        {{data.gender}}
+                    </p> 
+                    <p class="category__paragraph" *ngIf="data.liststarships">
+                        <span _ngcontent-c8="" class="characteristics">
+                            starship:
+                        </span>
+                    </p>
+                    <p class="category__paragraph" *ngFor="let starship of data.liststarships">
+                        <a (click)="handlerClickMoreInfo(starship)">{{starship.name}}</a>
+                    </p>
+                    <p class="category__paragraph" *ngIf="data.listfilms">
+                        <span _ngcontent-c8="" class="characteristics">
+                            Films:
+                        </span>
+                    </p>
+                    <p class="category__paragraph" *ngFor="let film of data.listfilms">
+                        <a (click)="handlerClickMoreInfo(film)">{{film.title}}</a>
+                    </p>
+
+                    <p class="category__paragraph" *ngIf="data.listvehicles">
+                        <span _ngcontent-c8="" class="characteristics">
+                            vehicles:
+                        </span>
+                    </p>
+                    <p class="category__paragraph" *ngFor="let vehicle of data.listvehicles">
+                        <a (click)="handlerClickMoreInfo(vehicle)">{{vehicle.name}}</a>
+                    </p>
+
+                    <p class="category__paragraph" *ngIf="data.listspecies">
+                        <span _ngcontent-c8="" class="characteristics">
+                            species:
+                        </span>
+                    </p>
+                    <p class="category__paragraph" *ngFor="let species of data.listspecies">
+                        <a (click)="handlerClickMoreInfo(species)">{{species.name}}</a>
+                    </p>
+                </div>
+                <img class="image" src="http://img2.wikia.nocookie.net/__cb20130920001614/starwars/images/5/58/BobaFettMain2.jpg"/> 
+            </div>       
+            
+            <div class="cards" *ngIf="dataInfo"> 
+                <div class="title">{{dataInfo.name || dataInfo.title}}</div>
+                <div class="details"> 
+                    <p class="category__paragraph" style="margin-top: 15px;">
+                        <span _ngcontent-c8="" class="characteristics">
+                            Height:
+                        </span>
+                        {{dataInfo}}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

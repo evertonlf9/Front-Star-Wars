@@ -1,0 +1,67 @@
+<div id="menu-component">
+    <div>
+        <div class="dropdown">
+            <button class="dropbtn">
+                <i class="material-icons">menu</i>
+                <span>Menu</span>
+            </button>
+            <div class="dropdown-content">
+                <a class="menu-link" (click)="handlerNextPage('/home')">
+                    <i class="material-icons">home</i>
+                    <span>Home</span>                    
+                </a>
+                <a class="menu-link" (click)="handlerNextPage('/character')">
+                    <i class="material-icons">emoji_people</i>
+                    <span>Personagens</span>                    
+                </a>
+                <a class="menu-link" (click)="handlerNextPage('/species')">
+                    <i class="material-icons">android</i>
+                    <span>Species</span>                      
+                </a>
+                <a class="menu-link" (click)="handlerNextPage('/planet')">
+                    <i class="material-icons">brightness_1</i>
+                    <span>Planetas</span>   
+                </a>
+                <a class="menu-link" (click)="handlerNextPage('/vehicles')">
+                    <i class="material-icons">time_to_leave</i>
+                    <span>Veiculos</span>   
+                </a>
+                <a class="menu-link" (click)="handlerNextPage('/starships')">
+                    <i class="material-icons">airplanemode_active</i>
+                    <span>Naves Estelares</span>  
+                </a>
+            </div>
+        </div>  
+    </div>  
+
+    <div class="topnav">
+        <a class="menu-link" (click)="handlerNextPage('/home')">
+            <i class="material-icons">home</i>
+            <span>Home</span>
+        </a>
+        <a class="menu-link" (click)="handlerNextPage('/character')">
+            <i class="material-icons">emoji_people</i>
+            <span>Personagens</span> 
+        </a>
+        <a class="menu-link" (click)="handlerNextPage('/species')">
+            <i class="material-icons">android</i>
+            <span>Species</span>   
+        </a>
+        <a class="menu-link" (click)="handlerNextPage('/planet')">
+            <i class="material-icons">brightness_1</i>
+            <span>Planetas</span> 
+        </a>
+        <a class="menu-link" (click)="handlerNextPage('/vehicles')">
+            <i class="material-icons">time_to_leave</i>
+            <span>Veiculos</span>  
+        </a>
+        <a class="menu-link" (click)="handlerNextPage('/starships')">
+            <i class="material-icons">airplanemode_active</i>
+            <span>Naves Estelares</span>  
+        </a>
+    </div>
+
+    <div class="container-img">
+        <img class="section__logo" src="https://image.ibb.co/mnebDS/gdfgdfgdg.png" alt="Logo StarWars The Game" title="“The Force will be with you. Always.” — Obi-Wan Kenobi">
+    </div>
+</div>
