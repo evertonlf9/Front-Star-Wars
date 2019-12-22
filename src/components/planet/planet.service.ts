@@ -9,7 +9,7 @@ import { BASE_URL } from '../../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class SpeciesService {
+export class PlanetService {
 
   constructor(private http: HttpClient) {}
 
@@ -20,9 +20,9 @@ export class SpeciesService {
     })
   }
 
-  getAllSpecies(search, pageSize, currentPage):Observable<any> {
+  getAllPlanet(search, pageSize, currentPage):Observable<any> {
 
-    const url = BASE_URL + `species/?search=${search}&page=${currentPage}&size=${pageSize}`
+    const url = BASE_URL + `planets/?search=${search}&page=${currentPage}&size=${pageSize}`
 
     return this.http.get(url, this.httpOptions)
     .pipe(

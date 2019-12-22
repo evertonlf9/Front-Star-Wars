@@ -1,4 +1,4 @@
-<div id="species-component">
+<div id="starship-component">
     <app-menu></app-menu>
     <div class="container-body">
         <div class="container" *ngIf="!loading">
@@ -21,10 +21,11 @@
                         <span _ngcontent-c8="" class="characteristics">
                             {{dataLabels[key]}}:
                         </span>
-                        {{item[key] === 'unknown' ? '-' : item[key]}}
+                        <span>{{item[key] === 'unknown' ? '-' : item[key]}}</span>
                     </p>
                     <a (click)="handlerClickMoreInfo(item, id)">Mais informações!</a>
-                </div>                
+                </div>
+                
             </div>        
         </div>
         <div class="container">
@@ -41,4 +42,3 @@
         </div>
     </div>
 </div>
-

@@ -16,7 +16,10 @@ import { AppComponent } from './app.component';
 import { HomeModule } from '../components/home/home.module';
 import { CharacterModule } from '../components/character/character.module';
 import { DetailModule } from '../components/detail/detail.module';
-import { SpeciesModule } from '../components/species/species.module'
+import { SpeciesModule } from '../components/species/species.module';
+import { PlanetModule } from '../components/planet/planet.module';
+import { StarshipModule } from '../components/starship/starship.module';
+import { VehicleModule } from '../components/vehicles/vehicles.module';
 
 
 @NgModule({
@@ -37,6 +40,9 @@ import { SpeciesModule } from '../components/species/species.module'
     CharacterModule,
     DetailModule,
     SpeciesModule,
+    PlanetModule,
+    StarshipModule,
+    VehicleModule,
 
     ToastrModule.forRoot(
       {

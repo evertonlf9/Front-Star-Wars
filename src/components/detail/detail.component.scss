@@ -1,3 +1,5 @@
+@import '../../assets/scss/variables';
+
 #detail-component {
     width: 100%;
     height: calc(100vh - 20px);
@@ -49,19 +51,16 @@
 
         .cards {
             max-width: 520px;
-            max-height: 820px;
             width: 100%;
             height: 100%;
             margin: 10px 5px;
-            border: 1px solid #c31413;
-            border: 1px solid #FFE62C;
-            // border-radius: 5%;
-            // border-bottom-left-radius: 5%;
-            // border-bottom-right-radius: 5%;
+            border: 1px solid $red;
+            border: 1px solid $yellow;
 
             .details {
                 float: left;
-                width: 65%;
+                width: 100%;
+                border-top: 1px solid $yellow;
 
                 .category__paragraph {
                     font-size: 16px;
@@ -73,19 +72,30 @@
                     }
                 }
 
+                .details-cotent {
+                    width: 50%;
+                    float: left;
+                }
+
                 a {
                     margin: 0 12px;
-                    color: #ffe62c;
+                    color: $yellow;
                     text-decoration-line: underline;
                     cursor: pointer;
                 }
             }
 
+            .descriptions {
+                display: flex;
+                flex-wrap: wrap;
+            }
+
             .image {
                 position: relative;
                 max-height: 250px;
-                margin: 4px 0;
+                margin: 4px auto;
                 border-radius: 5%;
+                display: block;
             }
 
             .title {
@@ -98,6 +108,37 @@
                 color: white;
             }
         }
+    }
 
+    .loader {
+        border: 10px solid #f3f3f3;
+        border-top: 10px solid #3498db;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        margin: 0 35px;
+        animation: spin 2s linear infinite;
+    }
+    
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+}
+
+@media screen and (max-width: $break-extra-small) {
+    #detail-component {
+        .container {
+            
+            .cards {    
+
+                .details {
+                    .details-cotent {
+                        width: 100%;
+                    }
+                }
+            }
+           
+        }
     }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, forkJoin } from 'rxjs';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -13,26 +13,69 @@ import { DetailService } from './detail.service';
   templateUrl: './detail.component.html',
   styleUrls: ['./detail.component.scss']
 })
-export class DetailComponent implements OnInit {
+export class DetailComponent implements OnInit, OnDestroy {
 
   private type: string = '';
   private id: string = '';
   private loading: boolean = false;
   private data: any;
   private dataLabels: any;
+  private dataKeyLabels: any;
   private dataInfo: any;
+  private dataInfoKeys: any;
+  private dataInfoLabels: any;
   constructor(private detailService: DetailService, private spinner: NgxSpinnerService, private toastr: ToastrService, private router: Router, private _route: ActivatedRoute, private http: HttpClient) { }
 
   ngOnInit() {
+    this.clearVariables();
+    this.initialize();
+  }
+
+  ngOnDestroy(){
+  }
+
+  initialize() {
     this.id = this._route.params['value'].id
     this.type = this._route.params['value'].type;
     this.dataLabels = Labels[this.type];
+    this.dataKeyLabels = Object.keys(this.dataLabels);
+    
     this.getDetail();
   }
 
-  handlerClickMoreInfo(item: object){
+  handlerClickMoreInfo(item: object, type: string){
     this.dataInfo = item;
+    this.dataInfoKeys = Object.keys(item);
+    this.dataInfoLabels = Labels[type];
   }
+
+  checkedHidden(key) {
+    if(typeof this.dataInfo[key] === 'string' && this.dataInfo[key].split('http').length > 1)
+     return true;
+
+    return typeof this.dataInfo[key] === 'object' || !this.dataInfoLabels[key]
+  }
+
+  getHidden(type: string, lists: object) {
+    return (this.data[type] && this.data[type].length > 0) && !lists;
+  }
+
+  handlerMoreInfo(){
+    const key = this.dataInfo.url.split("/")[5];
+    const type = this.dataInfo.url.split("/")[4];
+    const url = `/details/${type}/${key}`;
+    this.router.navigate([url]);
+    this.ngOnInit();
+  }
+
+  clearVariables(){
+    this.data = null
+    this.dataLabels = null
+    this.dataInfo = null;
+    this.dataInfoKeys = null;
+    this.dataInfoLabels = null;
+  }
+  
 
   getDetail(){
     this.spinner.show();
@@ -56,26 +99,38 @@ export class DetailComponent implements OnInit {
     if(this.data.starships)
       this.getStarship(this.data.starships, 'starships');
 
-    if(this.data.films, 'films')
+    if(this.data.films)
       this.getStarship(this.data.films, 'films');
     
-    if(this.data.species, 'species')
+    if(this.data.species)
       this.getStarship(this.data.species, 'species');
     
-    if(this.data.vehicles, 'vehicles')
+    if(this.data.vehicles)
       this.getStarship(this.data.vehicles, 'vehicles');
 
-    if(this.data.homeworld, 'homeworld')
+    if(this.data.homeworld)
+      this.getStarship(this.data.homeworld, 'homeworld');
+
+    if(this.data.pilots)
+      this.getStarship(this.data.pilots, 'pilots');
+
+    if(this.data.characters)
+      this.getStarship(this.data.characters, 'characters');
+    
+    if(this.data.planets)
+      this.getStarship(this.data.planets, 'planets');
+    
+    if(this.data.homeworld !== '')
       this.getStarship(this.data.homeworld, 'homeworld');
   }
 
   getStarship (data: any, type: string) { 
     const promisse = [];
-    if(typeof data !== 'string') {
+    if(data && typeof data !== 'string') {
       data.forEach(url => {
         promisse.push(this.http.get(url))
       });
-    }else {
+    }else if(data) {
       promisse.push(this.http.get(data));
     }
 

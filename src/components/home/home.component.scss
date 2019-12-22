@@ -19,7 +19,7 @@
         height: 206px;
         resize: none;
         background-color: transparent;
-        border: 1px solid #c31413;
+        border: 1px solid $red;
         color: white;
         margin: 10px 0;
         text-align: center;
@@ -33,11 +33,22 @@
     .button-start {
         width: 100%;
         background-color: transparent;
-        border: 1px solid #c31413;
+        border: 1px solid $red;
         color: white;
         font-size: 20px;
         cursor: pointer;
         overflow: hidden;
+    }
+
+    .section__logo {
+        transform-origin: left top;
+        animation: scale 2000ms ease-in-out forwards;
+
+    }
+    @keyframes scale {
+        to {
+            transform: scale(1);
+        }
     }
 
 }
@@ -45,6 +56,7 @@
 .section__logo {
   width: 30rem;
   margin-bottom: 1rem;
+  transform: scale(0.2);
 
   @media screen and (max-width: $break-extra-small) {
     width: 18rem;

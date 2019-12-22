@@ -1,22 +1,23 @@
 import { NgModule, Directive, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {MaterialModule} from '../../app/app.material.module';
-import { SpeciesComponent } from './species.component';
-import { SpeciesService } from './species.service';
 
 import { SharedModule } from '../../app/shared.module';
+import { VehiclesComponent } from './vehicles.component';
+import { VehiclesService } from './vehicles.service';
+
 
 @NgModule({
   declarations: [
-    SpeciesComponent
+    VehiclesComponent
   ],
   imports: [
     CommonModule,
-    SharedModule,
-    MaterialModule
+    MaterialModule,
+    SharedModule
   ],
-  providers: [SpeciesService],
+  providers: [VehiclesService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
-  bootstrap: [SpeciesComponent]
+  bootstrap: [VehiclesComponent]
 })
-export class SpeciesModule { }
+export class VehicleModule { }

@@ -10,23 +10,23 @@
                     <i class="material-icons">home</i>
                     <span>Home</span>                    
                 </a>
-                <a class="menu-link" (click)="handlerNextPage('/character')">
+                <a class="menu-link-dropdown" (click)="handlerNextPage('/character')">
                     <i class="material-icons">emoji_people</i>
                     <span>Personagens</span>                    
                 </a>
-                <a class="menu-link" (click)="handlerNextPage('/species')">
+                <a class="menu-link-dropdown" (click)="handlerNextPage('/species')">
                     <i class="material-icons">android</i>
                     <span>Species</span>                      
                 </a>
-                <a class="menu-link" (click)="handlerNextPage('/planet')">
+                <a class="menu-link-dropdown" (click)="handlerNextPage('/planets')">
                     <i class="material-icons">brightness_1</i>
                     <span>Planetas</span>   
                 </a>
-                <a class="menu-link" (click)="handlerNextPage('/vehicles')">
+                <a class="menu-link-dropdown" (click)="handlerNextPage('/vehicles')">
                     <i class="material-icons">time_to_leave</i>
                     <span>Veiculos</span>   
                 </a>
-                <a class="menu-link" (click)="handlerNextPage('/starships')">
+                <a class="menu-link-dropdown" (click)="handlerNextPage('/starships')">
                     <i class="material-icons">airplanemode_active</i>
                     <span>Naves Estelares</span>  
                 </a>
@@ -39,23 +39,23 @@
             <i class="material-icons">home</i>
             <span>Home</span>
         </a>
-        <a class="menu-link" (click)="handlerNextPage('/character')">
+        <a class="menu-link" (click)="handlerNextPage('/character')" [ngClass]="{'active': currentPage === '/character'}">
             <i class="material-icons">emoji_people</i>
             <span>Personagens</span> 
         </a>
-        <a class="menu-link" (click)="handlerNextPage('/species')">
+        <a class="menu-link" (click)="handlerNextPage('/species')" [ngClass]="{'active': currentPage === '/species'}">
             <i class="material-icons">android</i>
             <span>Species</span>   
         </a>
-        <a class="menu-link" (click)="handlerNextPage('/planet')">
+        <a class="menu-link" (click)="handlerNextPage('/planets')" [ngClass]="{'active': currentPage === '/planets'}">
             <i class="material-icons">brightness_1</i>
             <span>Planetas</span> 
         </a>
-        <a class="menu-link" (click)="handlerNextPage('/vehicles')">
+        <a class="menu-link" (click)="handlerNextPage('/vehicles')" [ngClass]="{'active': currentPage === '/vehicles'}">
             <i class="material-icons">time_to_leave</i>
             <span>Veiculos</span>  
         </a>
-        <a class="menu-link" (click)="handlerNextPage('/starships')">
+        <a class="menu-link" (click)="handlerNextPage('/starships')" [ngClass]="{'active': currentPage === '/starships'}">
             <i class="material-icons">airplanemode_active</i>
             <span>Naves Estelares</span>  
         </a>

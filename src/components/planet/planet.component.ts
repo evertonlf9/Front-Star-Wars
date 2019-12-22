@@ -5,14 +5,14 @@ import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-spinner';
 
 import { Labels } from '../../core/constants/constants';
-import { SpeciesService } from './species.service';
+import { PlanetService } from './planet.service';
 
 @Component({
-  selector: 'app-species',
-  templateUrl: './species.component.html',
-  styleUrls: ['./species.component.scss']
+  selector: 'app-planet',
+  templateUrl: './planet.component.html',
+  styleUrls: ['./planet.component.scss']
 })
-export class SpeciesComponent implements OnInit {
+export class PlanetComponent implements OnInit {
 
   pageEvent: PageEvent;
   private data: any = '';
@@ -24,51 +24,51 @@ export class SpeciesComponent implements OnInit {
   private itensPerPage: any = ['5', '10', '25', '100'];
   private dataLabels: any;
   private dataKeyLabels: any;
-  constructor(private SpeciesService: SpeciesService, private spinner: NgxSpinnerService, private toastr: ToastrService, private router: Router) { }
+  constructor(private planetService: PlanetService, private spinner: NgxSpinnerService, private toastr: ToastrService, private router: Router) { }
 
   ngOnInit() {
-    this.dataLabels = Labels['species'];
+    this.dataLabels = Labels['planets'];
     this.dataKeyLabels = Object.keys(this.dataLabels);
 
-    this.getSpecies();
+    this.getPlanet();
   }
 
   handlerChangePaginate(e: Event) {
     this.pageSize = e['pageSize'];
     this.currentPage = e['pageIndex'];
-    this.getSpecies();
+    this.getPlanet();
   }
 
   handlerChangeLimit() {
-    this.getSpecies();
+    this.getPlanet();
   }
 
   handlerKeyPress(e: Event) {
     if(e['keyCode'] === 13) {
-      this.getSpecies();
+      this.getPlanet();
     }
   }
 
   handlerClickSearch(){
     if(this.search.trim().length > 1)
-      this.getSpecies();
+      this.getPlanet();
   }
 
   handlerClickClearSearch() {
     this.search = '';
-    this.getSpecies();
+    this.getPlanet();
   } 
 
   handlerClickMoreInfo(people: Object) {
     const key = people['url'].split("/")[5];
-    const url = `/details/species/${key}`;
+    const url = `/details/planets/${key}`;
     this.router.navigate([url]);
   }
 
-  getSpecies(){
+  getPlanet(){
     this.spinner.show();
     this.loading = true;
-    this.SpeciesService.getAllSpecies(this.search, this.pageSize, (this.currentPage === 0 ? 1 : (this.currentPage + 1)))
+    this.planetService.getAllPlanet(this.search, this.pageSize, (this.currentPage === 0 ? 1 : (this.currentPage + 1)))
     .subscribe((data) => {  
 
       this.data = data.results;

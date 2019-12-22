@@ -5,14 +5,14 @@ import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-spinner';
 
 import { Labels } from '../../core/constants/constants';
-import { SpeciesService } from './species.service';
+import { StarshipService } from './starship.service';
 
 @Component({
-  selector: 'app-species',
-  templateUrl: './species.component.html',
-  styleUrls: ['./species.component.scss']
+  selector: 'app-starship',
+  templateUrl: './starship.component.html',
+  styleUrls: ['./starship.component.scss']
 })
-export class SpeciesComponent implements OnInit {
+export class StarshipComponent implements OnInit {
 
   pageEvent: PageEvent;
   private data: any = '';
@@ -24,51 +24,51 @@ export class SpeciesComponent implements OnInit {
   private itensPerPage: any = ['5', '10', '25', '100'];
   private dataLabels: any;
   private dataKeyLabels: any;
-  constructor(private SpeciesService: SpeciesService, private spinner: NgxSpinnerService, private toastr: ToastrService, private router: Router) { }
+  constructor(private starshipService: StarshipService, private spinner: NgxSpinnerService, private toastr: ToastrService, private router: Router) { }
 
   ngOnInit() {
-    this.dataLabels = Labels['species'];
+    this.dataLabels = Labels['starships'];
     this.dataKeyLabels = Object.keys(this.dataLabels);
 
-    this.getSpecies();
+    this.getStarship();
   }
 
   handlerChangePaginate(e: Event) {
     this.pageSize = e['pageSize'];
     this.currentPage = e['pageIndex'];
-    this.getSpecies();
+    this.getStarship();
   }
 
   handlerChangeLimit() {
-    this.getSpecies();
+    this.getStarship();
   }
 
   handlerKeyPress(e: Event) {
     if(e['keyCode'] === 13) {
-      this.getSpecies();
+      this.getStarship();
     }
   }
 
   handlerClickSearch(){
     if(this.search.trim().length > 1)
-      this.getSpecies();
+      this.getStarship();
   }
 
   handlerClickClearSearch() {
     this.search = '';
-    this.getSpecies();
+    this.getStarship();
   } 
 
   handlerClickMoreInfo(people: Object) {
     const key = people['url'].split("/")[5];
-    const url = `/details/species/${key}`;
+    const url = `/details/starships/${key}`;
     this.router.navigate([url]);
   }
 
-  getSpecies(){
+  getStarship(){
     this.spinner.show();
     this.loading = true;
-    this.SpeciesService.getAllSpecies(this.search, this.pageSize, (this.currentPage === 0 ? 1 : (this.currentPage + 1)))
+    this.starshipService.getAllStarship(this.search, this.pageSize, (this.currentPage === 0 ? 1 : (this.currentPage + 1)))
     .subscribe((data) => {  
 
       this.data = data.results;

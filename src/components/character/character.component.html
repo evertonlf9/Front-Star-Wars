@@ -3,7 +3,7 @@
     <div class="container-body">
         <div class="container" *ngIf="!loading">
             <div class="container-header">
-                <input matInput class="input-search" placeholder="Pesquisar um personagem pelo nome" [value]="search" [(ngModel)]="search" maxlength="255" (keypress)="handlerKeyPress($event)">
+                <input matInput class="input-search" placeholder="Pesquisar um personagem pelo nome" [value]="searchPeople" [(ngModel)]="searchPeople" maxlength="255" (keypress)="handlerKeyPress($event)">
                 <div class="btn-search" (click)="handlerClickSearch()">
                     <mat-icon aria-hidden="true">search</mat-icon>
                 </div>
@@ -15,60 +15,20 @@
         <div class="container" *ngIf="!loading">
             <div class="cards" *ngFor="let item of data; let id = index"> 
                 <div class="title">{{item.name}}</div>
+                <img class="image" src="http://img2.wikia.nocookie.net/__cb20130920001614/starwars/images/5/58/BobaFettMain2.jpg"/> 
                 <div class="details"> 
-                    <p class="category__paragraph" style="margin-top: 15px;">
+                    <p class="category__paragraph" *ngFor="let key of dataKeyLabels">
                         <span _ngcontent-c8="" class="characteristics">
-                            Height:
+                            {{dataLabels[key]}}:
                         </span>
-                        {{item.height}}
-                    </p>
-                    <p class="category__paragraph">
-                        <span _ngcontent-c8="" class="characteristics">
-                            mass:
-                        </span>
-                        {{item.mass}}
-                    </p>
-                    <p class="category__paragraph">
-                        <span _ngcontent-c8="" class="characteristics">
-                            hair_color:
-                        </span>
-                        {{item.hair_color}}
-                    </p>
-                    <p class="category__paragraph">
-                        <span _ngcontent-c8="" class="characteristics">
-                            skin_color:
-                        </span>
-                        {{item.skin_color}}
-                    </p>
-                    <p class="category__paragraph">
-                        <span _ngcontent-c8="" class="characteristics">
-                            eye_color:
-                        </span>
-                        {{item.eye_color}}
-                    </p>
-                    <p class="category__paragraph">
-                        <span _ngcontent-c8="" class="characteristics">
-                            birth_year:
-                        </span>
-                        {{item.birth_year === 'unknown' ? '-' : item.birth_year}}
-                    </p>
-                    <p class="category__paragraph">
-                        <span _ngcontent-c8="" class="characteristics">
-                            gender:
-                        </span>
-                        {{item.gender}}
+                        {{item[key] === 'unknown' ? '-' : item[key]}}
                     </p>
                     <a (click)="handlerClickMoreInfo(item, id)">Mais informações!</a>
                 </div>
-                <img class="image" src="http://img2.wikia.nocookie.net/__cb20130920001614/starwars/images/5/58/BobaFettMain2.jpg"/> 
+                
             </div>        
         </div>
         <div class="container">
-            <!-- <select [value]="pageSize" [(ngModel)]="pageSize" (change)="handlerChangeLimit()">
-                <option *ngFor="let item of itensPerPage">
-                {{item}}
-                </option>
-            </select> -->
 
             <mat-paginator *ngIf="!loading && totalPages > pageSize"
                 #paginator
