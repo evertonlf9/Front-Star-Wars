@@ -15,7 +15,7 @@ import { PlanetService } from './planet.service';
 export class PlanetComponent implements OnInit {
 
   pageEvent: PageEvent;
-  private data: any = '';
+  private data: any = null;
   private search: string = '';
   private loading: boolean = false;
   private pageSize: number = 10
@@ -43,9 +43,16 @@ export class PlanetComponent implements OnInit {
     this.getPlanet();
   }
 
+  getImage(planet: object){
+    const key = planet['url'].split("/")[5];
+    return `../../assets/img/planets/${key}.jpg`
+  }
+
   handlerKeyPress(e: Event) {
     if(e['keyCode'] === 13) {
-      this.getPlanet();
+      this.search = e.currentTarget['value'];
+      if(this.search.trim().length > 1)
+        this.getPlanet();
     }
   }
 
@@ -77,7 +84,7 @@ export class PlanetComponent implements OnInit {
       this.loading = false;
     },
     (error)=>{
-      this.toastr.error("Error!");
+      this.data = [];
       this.spinner.hide();
       this.loading = false;
     });

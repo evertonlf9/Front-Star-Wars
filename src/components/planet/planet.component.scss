@@ -56,10 +56,10 @@
             height: 100%;
             margin: 10px 5px;
             border: 1px solid $red;
-            border: 1px solid $yellow;
             .details {
                 float: left;
-                width: 56%;
+                width: 100%;
+                border-top: 1px solid $red;
 
                 .category__paragraph {
                     font-size: 15px;
@@ -84,6 +84,7 @@
                 max-height: 250px;
                 margin: 4px auto;
                 border-radius: 5%;
+                display: block;
             }
 
             .title {
@@ -106,14 +107,8 @@
             padding: 20px 5px !important;
             .cards {    
 
-                .details {
-                    width: 100%;
-                    border-top: 1px solid $yellow;
-                }
-
                 .image {
-                    max-height: 210px;
-                    display: block;
+                    max-height: 160px;
                 }
             }
             .container-header {

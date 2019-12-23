@@ -86,6 +86,10 @@ export class DetailComponent implements OnInit, OnDestroy {
       this.spinner.hide();
       this.loading = false;
 
+      if(this.data.name === "Darth Vader") {
+        document.getElementById('audio')['play']();
+      }
+
      this.getAllInfo();
     },
     (error)=>{

@@ -15,7 +15,7 @@ import { SpeciesService } from './species.service';
 export class SpeciesComponent implements OnInit {
 
   pageEvent: PageEvent;
-  private data: any = '';
+  private data: any = null;
   private search: string = '';
   private loading: boolean = false;
   private pageSize: number = 10
@@ -43,9 +43,16 @@ export class SpeciesComponent implements OnInit {
     this.getSpecies();
   }
 
+  getImage(specie: object){
+    const key = specie['url'].split("/")[5];
+    return `../../assets/img/species/${key}.jpg`
+  }
+
   handlerKeyPress(e: Event) {
     if(e['keyCode'] === 13) {
-      this.getSpecies();
+      this.search = e.currentTarget['value'];
+      if(this.search.trim().length > 1)
+        this.getSpecies();
     }
   }
 
@@ -77,7 +84,7 @@ export class SpeciesComponent implements OnInit {
       this.loading = false;
     },
     (error)=>{
-      this.toastr.error("Error!");
+      this.data = [];
       this.spinner.hide();
       this.loading = false;
     });

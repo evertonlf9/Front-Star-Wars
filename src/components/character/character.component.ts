@@ -15,7 +15,7 @@ import { CharacterService } from './character.service';
 export class CharacterComponent implements OnInit {
 
   pageEvent: PageEvent;
-  private data: any = '';
+  private data: any = null;
   private searchPeople: string = '';
   private loading: boolean = false;
   private pageSize: number = 10
@@ -43,8 +43,9 @@ export class CharacterComponent implements OnInit {
     this.getPeople();
   }
 
-  teste(e){
-    console.log(e.currentTarget)
+  getImage(people: object){
+    const key = people['url'].split("/")[5];
+    return `../../assets/img/characters/${key}.jpg`
   }
 
   handlerKeyPress(e: Event) {
@@ -82,8 +83,9 @@ export class CharacterComponent implements OnInit {
       this.spinner.hide();
       this.loading = false;
     },
-    (error)=>{
-      this.toastr.error("Error!");
+    (error) => {      
+      this.data = [];
+      this.currentPage = 0;
       this.spinner.hide();
       this.loading = false;
     });

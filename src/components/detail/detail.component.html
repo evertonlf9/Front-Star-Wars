@@ -1,4 +1,7 @@
 <div id="detail-component">
+    <audio id="audio" loop>
+        <source src="../../assets/sound/Imperial _March.mp3" type="audio/mpeg">
+    </audio>
     <app-menu></app-menu>
     <div class="container-body">
         <div class="container" *ngIf="!loading">
@@ -108,9 +111,9 @@
                         </span>
                         {{dataInfo[key]}}
                     </p>
-                    <p class="category__paragraph" style="margin-top: 15px;">
+                    <!-- <p class="category__paragraph" style="margin-top: 15px;">
                         <a (click)="handlerMoreInfo()">Mais informações</a>
-                    </p>
+                    </p> -->
                 </div>
             </div>
         </div>

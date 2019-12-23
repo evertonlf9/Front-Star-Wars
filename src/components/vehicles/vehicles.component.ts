@@ -15,7 +15,7 @@ import { VehiclesService } from './vehicles.service';
 export class VehiclesComponent implements OnInit {
 
   pageEvent: PageEvent;
-  private data: any = '';
+  private data: any = null;
   private search: string = '';
   private loading: boolean = false;
   private pageSize: number = 10
@@ -43,9 +43,16 @@ export class VehiclesComponent implements OnInit {
     this.getVehicle();
   }
 
+  getImage(vehicle: object){
+    const key = vehicle['url'].split("/")[5];
+    return `../../assets/img/vehicles/${key}.jpg`
+  }
+
   handlerKeyPress(e: Event) {
     if(e['keyCode'] === 13) {
-      this.getVehicle();
+      this.search = e.currentTarget['value'];
+      if(this.search.trim().length > 1)
+        this.getVehicle();
     }
   }
 
@@ -77,7 +84,7 @@ export class VehiclesComponent implements OnInit {
       this.loading = false;
     },
     (error)=>{
-      this.toastr.error("Error!");
+      this.data = [];
       this.spinner.hide();
       this.loading = false;
     });
