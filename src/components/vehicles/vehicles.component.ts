@@ -30,7 +30,7 @@ export class VehiclesComponent implements OnInit {
     this.dataLabels = Labels['vehicles'];
     this.dataKeyLabels = Object.keys(this.dataLabels);
 
-    // this.getVehicle();
+    this.getVehicle();
   }
 
   handlerChangePaginate(e: Event) {
