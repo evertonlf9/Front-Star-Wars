@@ -48,9 +48,10 @@ export class CharacterComponent implements OnInit {
   }
 
   handlerKeyPress(e: Event) {
-    console.log(e.currentTarget)
     if(e['keyCode'] === 13) {
-      this.getPeople();
+      this.searchPeople = e.currentTarget['value'];
+      if(this.searchPeople.trim().length > 1)
+        this.getPeople();
     }
   }
 

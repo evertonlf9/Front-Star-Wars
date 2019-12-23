@@ -1,27 +1,59 @@
-# FrontTestInvillia
+# Projeto Star Wars
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.1.3.
+Angular version 8.1.3.
 
-## Development server
+Author:
+Everton Ferreira
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Conteúdo
+- [Visão Geral do Projeto](#visão-geral-do-projeto)
+  - [Tecnologias](#tecnologias)
+  - [Documentação Star Wars API](#documentação-star-wars-api)
+- [Informações Iniciais](#informações-iniciais)
+  - [Clonando o Repositório](#clonando-o-repositório)
+  - [Instalando as Dependências](#instalando-as-dependências)
+- [Servidor de Desenvolvimento](#servidor-de-desenvolvimento)
+- [Servidor de Produção](#servidor-de-Produção)
 
-## Code scaffolding
+## Visão Geral do Projeto
+O principal objetivo do desafio é o desenvolvimento de uma aplicação que servisse como cola para um jogo que consiste em descobrir um determinado planeta aleatório da fraquia Star Wars, fazendo perguntas sobre o mesmo. Estas perguntas seriam, por exemplo, qual o clima do local, o tipo de terreno, quantos filmes da franquia o local apareceu etc. A ideia é criar algo parecido com o *mockup* disponível nesse [link](https://gallery.mailchimp.com/690273598e6b17ca3a786d15d/images/e3bed735-b74c-454c-a125-6fcb8520c15b.png).
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### Tecnologias
+- HTML5
 
-## Build
+- CSS
+  - [SCSS](https://sass-lang.com/)
+  - [Parallax Star](https://codepen.io/saransh/pen/BKJun) 
+  
+- JavaScript
+  - TypeScript
+  - Angular 8
+  - Angular CLI  
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+### Documentação Star Wars API
+A documentação da API utilizada para obter os dados está disponível em: [SWAPI](https://swapi.co/).
 
-## Running unit tests
+## Informações Iniciais
+Para realizar as passos a seguir, será necessário que tenha instalado em seu computador o **git** e o **node.js**. Abaixo seguem os sites para realizar o download e efetuar a instalação:
+- [Git](https://git-scm.com/downloads)
+- [Node.js - Windows/Mac](https://nodejs.org/en/download/)
+- [Node.js - Linux](https://nodejs.org/en/download/package-manager/)
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### Clonando o Repositório
+Primeiro é preciso que efetue a clonagem do repositório para o seu computador para assim efetuar alterações de código.
+**clone or download** e copiar a URL do respositório.
 
-## Running end-to-end tests
+Já abrindo o bash do Git para efetuar a clonagem será necessário que digite a seguinte linha de código e informe a URL copiada anteriormente:
+git clone <url-do-repositorio>
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+### Instalando as Dependências
+Para instalar as dependências do projeto basta abrir o **Prompt de Comando** (caso você esteja no linux, basta utilizar o terminal), acessar a pasta do repositório e inserir o seguinte comando:
+npm install
 
-## Further help
+## Servidor de Desenvolvimento
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Execute no **Prompt de Comando** (caso você esteja no linux, basta utilizar o terminal) `ng serve` para rodar o projeto em um servidor dev. Navegue para `http: // localhost: 4200 /`. O aplicativo será recarregado automaticamente se você alterar qualquer um dos arquivos de origem.
+
+## Servidor de Produção
+
+Execute no **Prompt de Comando** (caso você esteja no linux, basta utilizar o terminal) `ng build` para criar o projeto. Os arquivos de construção serão armazenados no diretório `dist /`. Use o sinalizador `--prod` para rodar o projeto em produção.
