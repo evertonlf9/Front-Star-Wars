@@ -75,6 +75,14 @@ export class DetailComponent implements OnInit, OnDestroy {
     this.dataInfoKeys = null;
     this.dataInfoLabels = null;
   }
+
+  getImage(item: object){
+    if(item) {
+      const key = item['url'].split("/")[5];
+      const type = item['url'].split("/")[4];
+      return `../../assets/img/${type}/${key}.jpg`
+    }
+  }
   
 
   getDetail(){

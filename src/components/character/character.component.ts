@@ -45,7 +45,7 @@ export class CharacterComponent implements OnInit {
 
   getImage(people: object){
     const key = people['url'].split("/")[5];
-    return `../../assets/img/characters/${key}.jpg`
+    return `../../assets/img/people/${key}.jpg`
   }
 
   handlerKeyPress(e: Event) {

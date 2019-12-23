@@ -7,7 +7,7 @@
         <div class="container" *ngIf="!loading">
             <div class="cards"> 
                 <div class="title">{{data.name}}</div>
-                <img class="image" src="http://img2.wikia.nocookie.net/__cb20130920001614/starwars/images/5/58/BobaFettMain2.jpg"/> 
+                <img class="image" [src]="getImage(data)"/> 
                 <div class="details"> 
                     <div class="details-cotent">
                         <p class="category__paragraph" style="margin-top: 15px;" *ngFor="let key of dataKeyLabels">
@@ -103,7 +103,7 @@
             
             <div class="cards" *ngIf="dataInfo"> 
                 <div class="title">{{dataInfo.name || dataInfo.title}}</div>
-                <img class="image" src="http://img2.wikia.nocookie.net/__cb20130920001614/starwars/images/5/58/BobaFettMain2.jpg"/> 
+                <img class="image" [src]="getImage(dataInfo)"/> 
                 <div class="details"> 
                     <p class="category__paragraph" style="margin-top: 15px;" *ngFor="let key of dataInfoKeys" [hidden]="checkedHidden(key)">
                         <span _ngcontent-c8="" class="characteristics">
