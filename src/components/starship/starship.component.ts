@@ -56,6 +56,24 @@ export class StarshipComponent implements OnInit {
     return `../../assets/img/starships/${key}.jpg`
   }
 
+  handlerKeyPressClearSearch(e:Event){
+    if(e['keyCode'] === 13) {
+      this.handlerClickClearSearch();
+    }
+  }
+  
+  handlerKeyPressSearch(e:Event){
+    if(e['keyCode'] === 13) {
+      this.handlerClickSearch();
+    }
+  }
+  
+  handlerKeyPressMoreInfo(e:Event, starship: Object){
+    if(e['keyCode'] === 13) {
+      this.handlerClickMoreInfo(starship)
+    }
+  }
+
   handlerClickSearch(){
     this.search = document.getElementById('search')['value'];
     if(this.search.trim().length > 1)

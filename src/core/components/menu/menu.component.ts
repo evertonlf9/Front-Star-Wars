@@ -15,6 +15,12 @@ export class MenuComponent implements OnInit {
     this.currentPage = this.router.routerState.snapshot.url
   }
 
+  handlerKeyPressNextPage(e:Event, page) {
+    if(e['keyCode'] === 13) {
+      this.handlerNextPage(page);
+    }
+  }
+
   handlerNextPage(page) {
     this.router.navigate([page]);
   }

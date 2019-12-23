@@ -1,18 +1,20 @@
-import { Component, OnInit, OnChanges } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import {PageEvent} from '@angular/material/paginator';
 import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-spinner';
 
-import { Labels } from '../../core/constants/constants';
-import { VehiclesService } from './vehicles.service';
+import { Labels } from '../../../core/constants/constants';
+import { ListService } from './list.service';
 
 @Component({
-  selector: 'app-vehicles',
-  templateUrl: './vehicles.component.html',
-  styleUrls: ['./vehicles.component.scss']
+  selector: 'app-list',
+  templateUrl: './list.component.html',
+  styleUrls: ['./list.component.scss']
 })
-export class VehiclesComponent implements OnInit {
+export class ListComponent implements OnInit {
+
+  @Input() type: string;
 
   pageEvent: PageEvent;
   private data: any = null;
@@ -24,86 +26,86 @@ export class VehiclesComponent implements OnInit {
   private itensPerPage: any = ['5', '10', '25', '100'];
   private dataLabels: any;
   private dataKeyLabels: any;
-  constructor(private vehiclesService: VehiclesService, private spinner: NgxSpinnerService, private toastr: ToastrService, private router: Router) { }
+  constructor(private listService: ListService, private spinner: NgxSpinnerService, private toastr: ToastrService, private router: Router) { }
 
   ngOnInit() {
-    this.dataLabels = Labels['vehicles'];
+    this.dataLabels = Labels[this.type];
     this.dataKeyLabels = Object.keys(this.dataLabels);
 
-    // this.getVehicle();
+    this.getData();
   }
 
   handlerChangePaginate(e: Event) {
     this.pageSize = e['pageSize'];
     this.currentPage = e['pageIndex'];
-    this.getVehicle();
+    this.getData();
   }
 
   handlerChangeLimit() {
-    this.getVehicle();
+    this.getData();
   }
 
-  getImage(vehicle: object){
-    const key = vehicle['url'].split("/")[5];
-    return `../../assets/img/vehicles/${key}.jpg`
+  getImage(item: object){
+    const key = item['url'].split("/")[5];
+    return `../../assets/img/${this.type}/${key}.jpg`
   }
 
   handlerKeyPress(e: Event) {
-    if(e['keyCode'] === 13) {
+    if(e['keyCode'] === 13 && !this.loading) {
       this.search = e.currentTarget['value'];
       if(this.search.trim().length > 1)
-        this.getVehicle();
+        this.getData();
     }
   }
 
-  handlerClickSearch(){
+  handlerClickSearch() {
     this.search = document.getElementById('search')['value'];
     if(this.search.trim().length > 1)
-      this.getVehicle();
+      this.getData();
   }
 
+  handlerClickClearSearch() {
+    this.search = '';
+    this.getData();
+  } 
+
   handlerKeyPressClearSearch(e:Event){
-    if(e['keyCode'] === 13) {
+    if(e['keyCode'] === 13 && !this.loading) {
       this.handlerClickClearSearch();
     }
   }
   
   handlerKeyPressSearch(e:Event){
-    if(e['keyCode'] === 13) {
+    if(e['keyCode'] === 13 && !this.loading) {
       this.handlerClickSearch();
     }
   }
   
-  handlerKeyPressMoreInfo(e:Event, vehicle: Object){
-    if(e['keyCode'] === 13) {
-      this.handlerClickMoreInfo(vehicle)
+  handlerKeyPressMoreInfo(e:Event, item: Object){
+    if(e['keyCode'] === 13 && !this.loading) {
+      this.handlerClickMoreInfo(item)
     }
   }
 
-  handlerClickClearSearch() {
-    this.search = '';
-    this.getVehicle();
-  } 
-
-  handlerClickMoreInfo(vehicle: Object) {
-    const key = vehicle['url'].split("/")[5];
-    const url = `/details/vehicles/${key}`;
+  handlerClickMoreInfo(item: Object) {
+    const key = item['url'].split("/")[5];
+    const url = `/details/${this.type}/${key}`;
     this.router.navigate([url]);
   }
 
-  getVehicle(){
+  getData(){
     this.spinner.show();
     this.loading = true;
-    this.vehiclesService.getAllVehicle(this.search, this.pageSize, (this.currentPage === 0 ? 1 : (this.currentPage + 1)))
-    .subscribe((data) => {  
-
+    this.listService.getData(this.search, this.type, this.pageSize, (this.currentPage === 0 ? 1 : (this.currentPage + 1)))
+    .subscribe((data) => { 
       this.data = data.results;
       this.totalPages = data.count;
       this.spinner.hide();
       this.loading = false;
     },
-    (error)=>{
+    (error) => {      
       this.data = [];
+      this.currentPage = 0;
       this.spinner.hide();
       this.loading = false;
     });

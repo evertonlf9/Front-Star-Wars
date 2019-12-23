@@ -48,6 +48,24 @@ export class PlanetComponent implements OnInit {
     return `../../assets/img/planets/${key}.jpg`
   }
 
+  handlerKeyPressClearSearch(e:Event){
+    if(e['keyCode'] === 13) {
+      this.handlerClickClearSearch();
+    }
+  }
+  
+  handlerKeyPressSearch(e:Event){
+    if(e['keyCode'] === 13) {
+      this.handlerClickSearch();
+    }
+  }
+  
+  handlerKeyPressMoreInfo(e:Event, planet: Object){
+    if(e['keyCode'] === 13) {
+      this.handlerClickMoreInfo(planet)
+    }
+  }
+
   handlerKeyPress(e: Event) {
     if(e['keyCode'] === 13) {
       this.search = e.currentTarget['value'];

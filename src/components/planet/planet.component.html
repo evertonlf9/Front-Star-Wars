@@ -4,26 +4,26 @@
         <div class="container" *ngIf="!loading">
             <div class="container-header">
                 <input matInput id="search" class="input-search" placeholder="Pesquisar um personagem pelo nome" [value]="search" [(ngModel)]="search" maxlength="255" (keypress)="handlerKeyPress($event)">
-                <div class="btn-search" (click)="handlerClickSearch()">
+                <div class="btn-search" (click)="handlerClickSearch()" (keypress)="handlerKeyPressSearch($event)" tabindex="0" aria-label="Pesquisar" role="button">
                     <mat-icon aria-hidden="true">search</mat-icon>
                 </div>
-                <div class="btn-search" (click)="handlerClickClearSearch()">
+                <div class="btn-search" (click)="handlerClickClearSearch()" (keypress)="handlerKeyPressClearSearch($event)" tabindex="0" aria-label="Limpar a pesquisa" role="button">
                     <mat-icon aria-hidden="true">clear</mat-icon>
                 </div>
             </div>
         </div>
         <div class="container" *ngIf="!loading" [hidden]="!data">
             <div class="cards" *ngFor="let item of data; let id = index"> 
-                <div class="title">{{item.name}}</div>
+                <div class="title" tabindex="0">{{item.name}}</div>
                 <img class="image" [src]="getImage(item)"/> 
                 <div class="details"> 
-                    <p class="category__paragraph" *ngFor="let key of dataKeyLabels">
-                        <span _ngcontent-c8="" class="characteristics">
+                    <p class="category__paragraph" *ngFor="let key of dataKeyLabels" tabindex="0">
+                        <span class="characteristics">
                             {{dataLabels[key]}}:
-                        </span>
-                        {{item[key] === 'unknown' ? '-' : item[key]}}
+                        </span> 
+                        <span>{{item[key] === 'unknown' ? '-' : item[key]}}</span>
                     </p>
-                    <a (click)="handlerClickMoreInfo(item, id)">Mais informações!</a>
+                    <a (click)="handlerClickMoreInfo(item)" (keypress)="handlerKeyPressMoreInfo($event, item)" tabindex="0" role="button">Mais informações!</a>
                 </div>
                 
             </div>        
@@ -43,7 +43,7 @@
 
         <div class="container" *ngIf="data && data.length === 0">
             <div class="not-found-result">
-                <span>Nenhum resultado encontrado!</span>
+                <span tabindex="0">Nenhum resultado encontrado!</span>
             </div>
         </div>
     </div>
