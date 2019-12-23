@@ -57,6 +57,7 @@ export class PlanetComponent implements OnInit {
   }
 
   handlerClickSearch(){
+    this.search = document.getElementById('search')['value'];
     if(this.search.trim().length > 1)
       this.getPlanet();
   }
@@ -66,8 +67,8 @@ export class PlanetComponent implements OnInit {
     this.getPlanet();
   } 
 
-  handlerClickMoreInfo(people: Object) {
-    const key = people['url'].split("/")[5];
+  handlerClickMoreInfo(planet: Object) {
+    const key = planet['url'].split("/")[5];
     const url = `/details/planets/${key}`;
     this.router.navigate([url]);
   }

@@ -19,8 +19,12 @@
                     <span>Species</span>                      
                 </a>
                 <a class="menu-link-dropdown" (click)="handlerNextPage('/planets')">
-                    <i class="material-icons">brightness_1</i>
+                    <i class="material-icons">language</i>
                     <span>Planetas</span>   
+                </a>
+                <a class="menu-link-dropdown" (click)="handlerNextPage('/films')">
+                    <i class="material-icons">theaters</i>
+                    <span>Filmes</span>   
                 </a>
                 <a class="menu-link-dropdown" (click)="handlerNextPage('/vehicles')">
                     <i class="material-icons">time_to_leave</i>
@@ -48,8 +52,12 @@
             <span>Species</span>   
         </a>
         <a class="menu-link" (click)="handlerNextPage('/planets')" [ngClass]="{'active': currentPage === '/planets'}">
-            <i class="material-icons">brightness_1</i>
+            <i class="material-icons">language</i>
             <span>Planetas</span> 
+        </a>
+        <a class="menu-link" (click)="handlerNextPage('/films')" [ngClass]="{'active': currentPage === '/films'}">
+            <i class="material-icons">theaters</i>
+            <span>Filmes</span> 
         </a>
         <a class="menu-link" (click)="handlerNextPage('/vehicles')" [ngClass]="{'active': currentPage === '/vehicles'}">
             <i class="material-icons">time_to_leave</i>

@@ -57,6 +57,7 @@ export class StarshipComponent implements OnInit {
   }
 
   handlerClickSearch(){
+    this.search = document.getElementById('search')['value'];
     if(this.search.trim().length > 1)
       this.getStarship();
   }
@@ -66,8 +67,8 @@ export class StarshipComponent implements OnInit {
     this.getStarship();
   } 
 
-  handlerClickMoreInfo(people: Object) {
-    const key = people['url'].split("/")[5];
+  handlerClickMoreInfo(starship: Object) {
+    const key = starship['url'].split("/")[5];
     const url = `/details/starships/${key}`;
     this.router.navigate([url]);
   }

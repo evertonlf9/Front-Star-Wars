@@ -57,6 +57,7 @@ export class SpeciesComponent implements OnInit {
   }
 
   handlerClickSearch(){
+    this.search = document.getElementById('search')['value'];
     if(this.search.trim().length > 1)
       this.getSpecies();
   }
@@ -66,8 +67,8 @@ export class SpeciesComponent implements OnInit {
     this.getSpecies();
   } 
 
-  handlerClickMoreInfo(people: Object) {
-    const key = people['url'].split("/")[5];
+  handlerClickMoreInfo(specie: Object) {
+    const key = specie['url'].split("/")[5];
     const url = `/details/species/${key}`;
     this.router.navigate([url]);
   }

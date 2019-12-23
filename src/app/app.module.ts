@@ -20,6 +20,7 @@ import { SpeciesModule } from '../components/species/species.module';
 import { PlanetModule } from '../components/planet/planet.module';
 import { StarshipModule } from '../components/starship/starship.module';
 import { VehicleModule } from '../components/vehicles/vehicles.module';
+import { FilmModule } from '../components/film/film.module';
 
 
 @NgModule({
@@ -43,6 +44,7 @@ import { VehicleModule } from '../components/vehicles/vehicles.module';
     PlanetModule,
     StarshipModule,
     VehicleModule,
+    FilmModule,
 
     ToastrModule.forRoot(
       {

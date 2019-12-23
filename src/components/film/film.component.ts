@@ -5,18 +5,18 @@ import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-spinner';
 
 import { Labels } from '../../core/constants/constants';
-import { CharacterService } from './character.service';
+import { FilmService } from './film.service';
 
 @Component({
-  selector: 'app-character',
-  templateUrl: './character.component.html',
-  styleUrls: ['./character.component.scss']
+  selector: 'app-film',
+  templateUrl: './film.component.html',
+  styleUrls: ['./film.component.scss']
 })
-export class CharacterComponent implements OnInit {
+export class FilmComponent implements OnInit {
 
-  pageEvent: PageEvent;
+  ageEvent: PageEvent;
   private data: any = null;
-  private searchPeople: string = '';
+  private search: string = '';
   private loading: boolean = false;
   private pageSize: number = 10
   private currentPage: number = 0;
@@ -24,59 +24,58 @@ export class CharacterComponent implements OnInit {
   private itensPerPage: any = ['5', '10', '25', '100'];
   private dataLabels: any;
   private dataKeyLabels: any;
-  constructor(private characterService: CharacterService, private spinner: NgxSpinnerService, private toastr: ToastrService, private router: Router) { }
+  constructor(private filmService: FilmService, private spinner: NgxSpinnerService, private toastr: ToastrService, private router: Router) { }
 
   ngOnInit() {
-    this.dataLabels = Labels['people'];
+    this.dataLabels = Labels['films'];
     this.dataKeyLabels = Object.keys(this.dataLabels);
 
-    this.getPeople();
+    this.getFilm();
   }
 
   handlerChangePaginate(e: Event) {
     this.pageSize = e['pageSize'];
     this.currentPage = e['pageIndex'];
-    this.getPeople();
+    this.getFilm();
   }
 
   handlerChangeLimit() {
-    this.getPeople();
+    this.getFilm();
   }
 
-  getImage(people: object){
-    const key = people['url'].split("/")[5];
-    return `../../assets/img/characters/${key}.jpg`
+  getImage(film: object){
+    const key = film['url'].split("/")[5];
+    return `../../assets/img/films/${key}.jpg`
   }
 
   handlerKeyPress(e: Event) {
     if(e['keyCode'] === 13) {
-      this.searchPeople = e.currentTarget['value'];
-      if(this.searchPeople.trim().length > 1)
-        this.getPeople();
+      this.search = e.currentTarget['value'];
+      if(this.search.trim().length > 1)
+        this.getFilm();
     }
   }
 
-  handlerClickSearch() {
-    this.searchPeople = document.getElementById('search')['value'];
-    if(this.searchPeople.trim().length > 1)
-      this.getPeople();
+  handlerClickSearch(){
+    if(this.search.trim().length > 1)
+      this.getFilm();
   }
 
   handlerClickClearSearch() {
-    this.searchPeople = '';
-    this.getPeople();
+    this.search = '';
+    this.getFilm();
   } 
 
-  handlerClickMoreInfo(people: Object) {
-    const key = people['url'].split("/")[5];
-    const url = `/details/people/${key}`;
+  handlerClickMoreInfo(film: Object) {
+    const key = film['url'].split("/")[5];
+    const url = `/details/films/${key}`;
     this.router.navigate([url]);
   }
 
-  getPeople(){
+  getFilm(){
     this.spinner.show();
     this.loading = true;
-    this.characterService.getAllCharacter(this.searchPeople, this.pageSize, (this.currentPage === 0 ? 1 : (this.currentPage + 1)))
+    this.filmService.getAllFilms(this.search, this.pageSize, (this.currentPage === 0 ? 1 : (this.currentPage + 1)))
     .subscribe((data) => {  
 
       this.data = data.results;
@@ -91,4 +90,5 @@ export class CharacterComponent implements OnInit {
       this.loading = false;
     });
   }
+
 }

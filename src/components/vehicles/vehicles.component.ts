@@ -57,6 +57,7 @@ export class VehiclesComponent implements OnInit {
   }
 
   handlerClickSearch(){
+    this.search = document.getElementById('search')['value'];
     if(this.search.trim().length > 1)
       this.getVehicle();
   }
@@ -66,8 +67,8 @@ export class VehiclesComponent implements OnInit {
     this.getVehicle();
   } 
 
-  handlerClickMoreInfo(people: Object) {
-    const key = people['url'].split("/")[5];
+  handlerClickMoreInfo(vehicle: Object) {
+    const key = vehicle['url'].split("/")[5];
     const url = `/details/vehicles/${key}`;
     this.router.navigate([url]);
   }

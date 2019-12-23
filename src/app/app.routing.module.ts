@@ -9,6 +9,7 @@ import { SpeciesComponent } from '../components/species/species.component';
 import { PlanetComponent } from '../components/planet/planet.component';
 import { StarshipComponent } from '../components/starship/starship.component';
 import { VehiclesComponent } from '../components/vehicles/vehicles.component';
+import { FilmComponent } from '../components/film/film.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -18,6 +19,7 @@ const appRoutes: Routes = [
   { path: 'planets', component: PlanetComponent },
   { path: 'starships', component: StarshipComponent },
   { path: 'vehicles', component: VehiclesComponent },
+  { path: 'films', component: FilmComponent },
   { path: '**', redirectTo: ''}
 ];
 
