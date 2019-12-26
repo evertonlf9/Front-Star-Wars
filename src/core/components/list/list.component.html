@@ -11,10 +11,10 @@
         </div>
     </div>
     <div class="container" *ngIf="data">
-        <div class="cards" *ngFor="let item of data; let id = index"> 
+        <div class="cards" [ngClass]="{'cards-red' : classType === 'red' }" [ngStyle]="{'min-height': style ? style : '' }" *ngFor="let item of data; let id = index"> 
             <div class="title" tabindex="0">{{item.name}}</div>
-            <img class="image" [src]="getImage(item)"/> 
-            <div class="details"> 
+            <img [ngClass]="{'image-red' : classType === 'red', 'image' : classType !== 'red'}" [src]="getImage(item)" *ngIf="getImage(item)"/> 
+            <div [ngClass]="{'details-red' : classType === 'red', 'details' : classType !== 'red' }"> 
                 <p class="category__paragraph" *ngFor="let key of dataKeyLabels" tabindex="0">
                     <span class="characteristics">
                         {{dataLabels[key]}}:

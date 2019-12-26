@@ -52,7 +52,7 @@ npm install
 
 ## Servidor de Desenvolvimento
 
-Execute no **Prompt de Comando** (caso você esteja no linux, basta utilizar o terminal) `ng serve` para rodar o projeto em um servidor dev. Navegue para `http: // localhost: 4200 /`. O aplicativo será recarregado automaticamente se você alterar qualquer um dos arquivos de origem.
+Execute no **Prompt de Comando** (caso você esteja no linux, basta utilizar o terminal) `ng start` para rodar o projeto em um servidor dev. Navegue para `http: // localhost: 4200 /`. O aplicativo será recarregado automaticamente se você alterar qualquer um dos arquivos de origem.
 
 ## Servidor de Produção
 

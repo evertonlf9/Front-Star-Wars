@@ -15,6 +15,8 @@ import { ListService } from './list.service';
 export class ListComponent implements OnInit {
 
   @Input() type: string;
+  @Input() classType: string;
+  @Input() style: string;
 
   pageEvent: PageEvent;
   private data: any = null;
@@ -47,6 +49,11 @@ export class ListComponent implements OnInit {
 
   getImage(item: object){
     const key = item['url'].split("/")[5];
+
+    if(key > 27 && this.type === 'planets'){
+      return null;
+    }
+
     return `../../assets/img/${this.type}/${key}.jpg`
   }
 

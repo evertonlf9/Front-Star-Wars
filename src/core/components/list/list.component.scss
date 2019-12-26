@@ -51,7 +51,6 @@
             width: 100%;
             height: 100%;
             margin: 10px 5px;
-            border: 1px solid $red;
             border: 1px solid $yellow;
             .details {
                 float: left;
@@ -74,6 +73,29 @@
                     cursor: pointer;
                 }
             }
+
+            .details-red {
+                float: left;
+                width: 100%;
+                border-top: 1px solid $red; 
+
+                .category__paragraph {
+                    font-size: 15px;
+                    margin: 5px 12px;
+                    color: #d4d1d1;
+
+                    .characteristics {
+                        font-weight: 600;
+                    }
+                }
+
+                a {
+                    margin: 0 12px;
+                    color: $yellow;
+                    text-decoration-line: underline;
+                    cursor: pointer;
+                }
+            }
     
             .image {
                 position: relative;
@@ -82,6 +104,14 @@
                 border-radius: 5%;
                 width: 173px;
                 height: 250px;
+            }
+
+            .image-red {
+                position: relative;
+                max-height: 250px;
+                margin: 4px auto;
+                border-radius: 5%;
+                display: block;
             }
     
             .title {
@@ -93,7 +123,11 @@
                 padding: 7px 0;
                 color: white;
             }
-        }    
+        }   
+        
+        .cards-red {
+            border: 1px solid $red;
+        }
     }
 }
 
@@ -107,8 +141,13 @@
                 border-top: 1px solid $yellow;
             }
 
+            .image-red {
+                max-height: 150px !important;
+            }
+
             .image {
-                max-height: 210px;
+                max-height: 200px !important;
+                width: 150px !important;
                 display: block;
             }
         }
