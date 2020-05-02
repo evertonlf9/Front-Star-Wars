@@ -6,7 +6,7 @@ export const environment = {
   production: false
 };
 
-export const BASE_URL = 'https://swapi.co/api/';
+export const BASE_URL = 'https://swapi.dev/api/';
 
 /*
  * For easier debugging in development mode, you can import the following file
