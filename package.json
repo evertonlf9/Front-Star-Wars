@@ -4,7 +4,6 @@
   "repository": "https://github.com/evertonlf9/Front-Star-Wars",
   "scripts": {
     "heroku-postbuild": "ng build --prod",
-    "postinstall": "ng build --aot --prod",
     "ng": "ng",
     "start": "node server.js",
     "start:dev": "ng serve",
