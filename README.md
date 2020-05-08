@@ -27,7 +27,7 @@ O principal objetivo do desafio é o desenvolvimento de uma aplicação que exib
   
 - JavaScript
   - TypeScript
-  - Angular 8
+  - Angular 9
   - Angular CLI  
 
 ### Documentação Star Wars API
