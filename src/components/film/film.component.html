@@ -1,40 +1,5 @@
 <div id="film-component">
     <app-menu></app-menu>
-    <div class="container-body">
-        <div class="container" *ngIf="!loading" [hidden]="!data">
-            <div class="cards" *ngFor="let item of data; let id = index"> 
-                <div class="title">{{item.title}}</div>
-                <img class="image" [src]="getImage(item)"/> 
-                <div class="details"> 
-                    <p class="category__paragraph" *ngFor="let key of dataKeyLabels">
-                        <span _ngcontent-c8="" class="characteristics">
-                            {{dataLabels[key]}}:
-                        </span>
-                        {{item[key] === 'unknown' ? '-' : item[key]}}
-                    </p>
-                    <a (click)="handlerClickMoreInfo(item, id)">Mais informações!</a>
-                </div>
-                
-            </div>        
-        </div>
-        <div class="container" [hidden]="!data">
-
-            <mat-paginator *ngIf="!loading && totalPages > pageSize"
-                #paginator
-                (page)="pageEvent = handlerChangePaginate($event)"
-                [length]="totalPages"
-                [pageSize]="pageSize"
-                [pageIndex]="currentPage"
-                [showFirstLastButtons]="true"
-                [pageSizeOptions]="itensPerPage">            
-            </mat-paginator>
-        </div>
-
-        <div class="container" *ngIf="data && data.length === 0">
-            <div class="not-found-result">
-                <span>Nenhum resultado encontrado!</span>
-            </div>
-        </div>
-    </div>
+    <app-list [type]="'films'" [classType]="'red'" [style]=""></app-list>
 </div>
 

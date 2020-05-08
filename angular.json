@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "front-test-invillia": {
+    "Front-Star-Wars-Angular": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,17 +17,23 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/front-test-invillia",
+            "outputPath": "dist/Front-Star-Wars-Angular",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
-            "aot": false,
+            "aot": true,
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              {
+                "glob": "**/*",
+                "input": "./node_modules/@ant-design/icons-angular/src/inline-svg/",
+                "output": "/assets/"
+              }
             ],
             "styles": [
+              "src/theme.less",
               "src/styles.scss"
             ],
             "scripts": []
@@ -45,7 +51,6 @@
               "sourceMap": false,
               "extractCss": true,
               "namedChunks": false,
-              "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
@@ -54,6 +59,11 @@
                   "type": "initial",
                   "maximumWarning": "2mb",
                   "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
                 }
               ]
             }
@@ -62,18 +72,19 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "front-test-invillia:build"
+            "browserTarget": "Front-Star-Wars-Angular:build",
+            "proxyConfig": "src/proxy.conf.json"
           },
           "configurations": {
             "production": {
-              "browserTarget": "front-test-invillia:build:production"
+              "browserTarget": "Front-Star-Wars-Angular:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "front-test-invillia:build"
+            "browserTarget": "Front-Star-Wars-Angular:build"
           }
         },
         "test": {
@@ -110,15 +121,16 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "front-test-invillia:serve"
+            "devServerTarget": "Front-Star-Wars-Angular:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "front-test-invillia:serve:production"
+              "devServerTarget": "Front-Star-Wars-Angular:serve:production"
             }
           }
         }
       }
-    }},
-  "defaultProject": "front-test-invillia"
+    }
+  },
+  "defaultProject": "Front-Star-Wars-Angular"
 }

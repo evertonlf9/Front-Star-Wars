@@ -1,18 +1,11 @@
+<!-- NG-ZORRO -->
 <div id="app-component">
 
   <div class="starOne"></div>
   <div class="starTwo"></div>
   <div class="starThree"></div>
 
-  <ngx-spinner
-    bdColor = "rgba(51, 51, 51, 0.8)"
-    size = "large"
-    color = "#fff"
-    type = "ball-beat"
-  ></ngx-spinner>
-
   <div class="app-container">    
     <router-outlet (activate)='OnActivate($event)' (deactivate)='OnDeactivate($event)'></router-outlet>    
   </div>
 </div>
-

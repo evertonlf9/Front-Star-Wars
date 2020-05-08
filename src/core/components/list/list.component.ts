@@ -1,8 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import {PageEvent} from '@angular/material/paginator';
-import { ToastrService } from 'ngx-toastr';
-import { NgxSpinnerService } from 'ngx-spinner';
+
+// import {PageEvent} from '@angular/material/paginator';
+// import { ToastrService } from 'ngx-toastr';
+// import { NgxSpinnerService } from 'ngx-spinner';
+
+import { NzInputModule } from 'ng-zorro-antd/input';
 
 import { Labels } from '../../../core/constants/constants';
 import { ListService } from './list.service';
@@ -18,17 +21,17 @@ export class ListComponent implements OnInit {
   @Input() classType: string;
   @Input() style: string;
 
-  pageEvent: PageEvent;
-  private data: any = null;
-  private search: string = '';
-  private loading: boolean = false;
-  private pageSize: number = 10
-  private currentPage: number = 0;
-  private totalPages: number = 0;
-  private itensPerPage: any = ['5', '10', '25', '100'];
-  private dataLabels: any;
-  private dataKeyLabels: any;
-  constructor(private listService: ListService, private spinner: NgxSpinnerService, private toastr: ToastrService, private router: Router) { }
+  pageEvent: any;
+  data: any = null;
+  search: string = '';
+  loading: boolean = false;
+  pageSize: number = 10
+  currentPage: number = 1;
+  totalPages: number = 0;
+  itensPerPage: any = ['5', '10', '25', '100'];
+  dataLabels: any;
+  dataKeyLabels: any;
+  constructor(private listService: ListService, private router: Router) { }
 
   ngOnInit() {
     this.dataLabels = Labels[this.type];
@@ -37,9 +40,8 @@ export class ListComponent implements OnInit {
     this.getData();
   }
 
-  handlerChangePaginate(e: Event) {
-    this.pageSize = e['pageSize'];
-    this.currentPage = e['pageIndex'];
+  handlerChangePaginate(page: number) {
+    this.currentPage = page;
     this.getData();
   }
 
@@ -57,6 +59,10 @@ export class ListComponent implements OnInit {
     return `../../assets/img/${this.type}/${key}.jpg`
   }
 
+  notFoundImage(key: number) {
+    document.getElementById('img-' + key)['src'] = `../../assets/img/big-placeholder.jpg`; 
+  }
+
   handlerKeyPress(e: Event) {
     if(e['keyCode'] === 13 && !this.loading) {
       this.search = e.currentTarget['value'];
@@ -66,7 +72,6 @@ export class ListComponent implements OnInit {
   }
 
   handlerClickSearch() {
-    this.search = document.getElementById('search')['value'];
     if(this.search.trim().length > 1)
       this.getData();
   }
@@ -101,19 +106,16 @@ export class ListComponent implements OnInit {
   }
 
   getData(){
-    this.spinner.show();
     this.loading = true;
-    this.listService.getData(this.search, this.type, this.pageSize, (this.currentPage === 0 ? 1 : (this.currentPage + 1)))
+    this.listService.getData(this.search, this.type, this.pageSize, this.currentPage)
     .subscribe((data) => { 
       this.data = data.results;
       this.totalPages = data.count;
-      this.spinner.hide();
       this.loading = false;
     },
     (error) => {      
       this.data = [];
       this.currentPage = 0;
-      this.spinner.hide();
       this.loading = false;
     });
   }

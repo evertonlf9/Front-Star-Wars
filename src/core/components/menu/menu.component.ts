@@ -8,11 +8,11 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class MenuComponent implements OnInit {
 
-  private currentPage: string = 'character';
+  currentPage: string = 'character';
   constructor(private router: Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
-    this.currentPage = this.router.routerState.snapshot.url
+    this.currentPage = this.router.routerState.snapshot.url;
   }
 
   handlerKeyPressNextPage(e:Event, page) {

@@ -1,6 +1,10 @@
 @import "./assets/scss/variables";
 @import './assets/fonts/family.css';
-@import '~ngx-toastr/toastr';
+@import './assets/scss/functions';
+@import './assets/scss/keyframes';
+@import './assets/scss/variables';
+@import './assets/scss/mixins';
+
 
 *, *::before, *::after {
     -webkit-box-sizing: border-box;
@@ -24,25 +28,51 @@ body {
     margin: 0;
 }
 
-.mat-paginator-range-label {    
-    color: white;
-    font-size: 15px;
+.starOne {
+    @include animationStars(1px, $shadows-small, 50s);
 }
 
-.mat-paginator-page-size {
-    display: none !important;
+.starTwo {
+    @include animationStars(2px, $shadows-medium, 100s);
 }
 
-.mat-paginator-navigation-first, .mat-paginator-navigation-previous, 
-.mat-paginator-navigation-next, .mat-paginator-navigation-last {
-    margin: 0 5px !important;
+.starThree {
+    @include animationStars(3px, $shadows-big, 150s);
 }
+
+.hide{display: none !important;}
 
 .not-found-result {
     border: 1px solid $red;
     padding: 20px 20px;
     font-size: 18px;
     color: $yellow;
+}
+
+.container-spin {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    text-align: center;
+    margin: 30% 0;
+}
+
+.ant-pagination {
+    .ant-pagination-total-text {color: white;}
+    .ant-pagination-item {
+        color: black;
+        font-weight: 700;
+    }
+
+    .ant-pagination-item-link{
+        font-weight: 700;
+        color: black;
+    }
+
+    .ant-pagination-item {border-color: #d9d9d9 !important;}
+
+    .ant-pagination-jump-next, .ant-pagination-jump-prev, .ant-pagination-prev, .ant-pagination-next, .ant-pagination-item  {background-color: #fff !important; margin: 0 1px;}
+    .ant-pagination-item-ellipsis {color: rgba(0, 0, 0, 1);}
 }
 
 @media only screen and (max-width: 1200px) {

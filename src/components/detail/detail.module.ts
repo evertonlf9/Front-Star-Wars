@@ -1,9 +1,9 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA} from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {MaterialModule} from '../../app/app.material.module';
 import {SharedModule} from '../../app/shared.module';
 
 import { DetailComponent } from './detail.component';
+import { DetailService } from './detail.service';
 
 @NgModule({
   declarations: [
@@ -11,10 +11,9 @@ import { DetailComponent } from './detail.component';
   ],
   imports: [
     CommonModule,
-    MaterialModule,
     SharedModule
   ],
-  providers: [],
+  providers: [DetailService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
   bootstrap: [DetailComponent]
 })

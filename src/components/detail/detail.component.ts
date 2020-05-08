@@ -2,8 +2,6 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, forkJoin } from 'rxjs';
 import { Router, ActivatedRoute } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
-import { NgxSpinnerService } from 'ngx-spinner';
 
 import { Labels } from '../../core/constants/constants';
 import { DetailService } from './detail.service';
@@ -15,16 +13,16 @@ import { DetailService } from './detail.service';
 })
 export class DetailComponent implements OnInit, OnDestroy {
 
-  private type: string = '';
-  private id: string = '';
-  private loading: boolean = false;
-  private data: any;
-  private dataLabels: any;
-  private dataKeyLabels: any;
-  private dataInfo: any;
-  private dataInfoKeys: any;
-  private dataInfoLabels: any;
-  constructor(private detailService: DetailService, private spinner: NgxSpinnerService, private toastr: ToastrService, private router: Router, private _route: ActivatedRoute, private http: HttpClient) { }
+  type: string = '';
+  id: string = '';
+  loading: boolean = false;
+  data: any;
+  dataLabels: any;
+  dataKeyLabels: any;
+  dataInfo: any;
+  dataInfoKeys: any;
+  dataInfoLabels: any;
+  constructor(private detailService: DetailService, private router: Router, private _route: ActivatedRoute, private http: HttpClient) { }
 
   ngOnInit() {
     this.clearVariables();
@@ -77,21 +75,24 @@ export class DetailComponent implements OnInit, OnDestroy {
   }
 
   getImage(item: object){
-    if(item) {
+    if(item && item['url']) {
       const key = item['url'].split("/")[5];
       const type = item['url'].split("/")[4];
       return `../../assets/img/${type}/${key}.jpg`
     }
   }
   
+  notFoundImage(elem: string) {
+    document.getElementById(elem)['src'] = `../../assets/img/big-placeholder.jpg`; 
+  }
 
   getDetail(){
-    this.spinner.show();
+    // this.spinner.show();
     this.loading = true;
     this.detailService.getDetail(this.id, this.type)
     .subscribe((res) => { 
       this.data = res;
-      this.spinner.hide();
+      // this.spinner.hide();
       this.loading = false;
 
       if(this.data.name === "Darth Vader") {
@@ -101,39 +102,51 @@ export class DetailComponent implements OnInit, OnDestroy {
      this.getAllInfo();
     },
     (error)=>{
-      this.toastr.error("Error!");
-      this.spinner.hide();
+      this.data = [];
       this.loading = false;
     });
   }
 
-  getAllInfo(){
+  getAllInfo() {
     if(this.data.starships)
-      this.getStarship(this.data.starships, 'starships');
+      this.detailService.getData(this.data.starships).then((results)=>{
+        this.data['liststarships'] = results;
+      });
 
     if(this.data.films)
-      this.getStarship(this.data.films, 'films');
+      this.detailService.getData(this.data.films).then((results)=>{
+        this.data['listfilms'] = results;
+      });
     
     if(this.data.species)
-      this.getStarship(this.data.species, 'species');
+      this.detailService.getData(this.data.species).then((results)=>{
+        this.data['listspecies'] = results;
+      });
     
     if(this.data.vehicles)
-      this.getStarship(this.data.vehicles, 'vehicles');
+      this.detailService.getData(this.data.vehicles).then((results)=>{
+        this.data['listvehicles'] = results;
+      });
 
     if(this.data.homeworld)
-      this.getStarship(this.data.homeworld, 'homeworld');
+      this.detailService.getData(this.data.homeworld).then((results)=>{
+        this.data['listhomeworld'] = results;
+      });
 
     if(this.data.pilots)
-      this.getStarship(this.data.pilots, 'pilots');
+      this.detailService.getData(this.data.pilots).then((results)=>{
+        this.data['listpilots'] = results;
+      });
 
     if(this.data.characters)
-      this.getStarship(this.data.characters, 'characters');
+      this.detailService.getData(this.data.characters).then((results)=>{
+        this.data['listcharacters'] = results;
+      });
     
     if(this.data.planets)
-      this.getStarship(this.data.planets, 'planets');
-    
-    if(this.data.homeworld !== '')
-      this.getStarship(this.data.homeworld, 'homeworld');
+      this.detailService.getData(this.data.planets).then((results)=>{
+        this.data['listplanets'] = results;
+      });
   }
 
   getStarship (data: any, type: string) { 

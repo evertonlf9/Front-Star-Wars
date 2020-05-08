@@ -4,14 +4,14 @@
     </audio>
     <app-menu></app-menu>
     <div class="container-body">
-        <div class="container" *ngIf="!loading">
+        <div class="container" *ngIf="data && !loading">
             <div class="cards"> 
-                <div class="title">{{data.name}}</div>
-                <img class="image" [src]="getImage(data)"/> 
+                <div class="title">{{data.name || data.title}}</div>
+                <img id="details-img" class="image" [src]="getImage(data)" (error)="notFoundImage('details-img')"/> 
                 <div class="details"> 
                     <div class="details-cotent">
                         <p class="category__paragraph" style="margin-top: 15px;" *ngFor="let key of dataKeyLabels">
-                            <span _ngcontent-c8="" class="characteristics">
+                            <span class="characteristics">
                                 {{dataLabels[key]}}:
                             </span>
                             {{data[key] === 'unknown' ? '-' : data[key]}}
@@ -19,7 +19,7 @@
                     </div>
                     <div class="details-cotent">
                         <p class="category__paragraph" *ngIf="data.starships && data.starships.length > 0">
-                            <span _ngcontent-c8="" class="characteristics">
+                            <span class="characteristics">
                                 Naves estelares:
                             </span>
                         </p>
@@ -29,7 +29,7 @@
                         </div>
 
                         <p class="category__paragraph" *ngIf="data.homeworld && data.homeworld.length > 0">
-                            <span _ngcontent-c8="" class="characteristics">                            
+                            <span class="characteristics">                            
                                 Planeta Natal:
                             </span>
                         </p>
@@ -39,7 +39,7 @@
                         </div>
 
                         <p class="category__paragraph" *ngIf="data.films && data.films.length > 0">
-                            <span _ngcontent-c8="" class="characteristics">
+                            <span class="characteristics">
                                 Films:
                             </span>
                         </p>
@@ -49,7 +49,7 @@
                         </div>
 
                         <p class="category__paragraph" *ngIf="data.vehicles && data.vehicles.length > 0">
-                            <span _ngcontent-c8="" class="characteristics">
+                            <span class="characteristics">
                                 Veiculos:
                             </span>
                         </p>
@@ -59,7 +59,7 @@
                         </div>
 
                         <p class="category__paragraph" *ngIf="data.species && data.species.length > 0">
-                            <span _ngcontent-c8="" class="characteristics">
+                            <span class="characteristics">
                                 Espécies:
                             </span>
                         </p>
@@ -69,7 +69,7 @@
                         </div>
 
                         <p class="category__paragraph" *ngIf="data.characters && data.characters.length > 0">
-                            <span _ngcontent-c8="" class="characteristics">
+                            <span class="characteristics">
                                 Personagens:
                             </span>
                         </p>
@@ -79,7 +79,7 @@
                         </div>
 
                         <p class="category__paragraph" *ngIf="data.planets && data.planets.length > 0">
-                            <span _ngcontent-c8="" class="characteristics">
+                            <span class="characteristics">
                                 Planetas:
                             </span>
                         </p>
@@ -89,7 +89,7 @@
                         </div>
 
                         <p class="category__paragraph" *ngIf="data.pilots && data.pilots.length > 0">
-                            <span _ngcontent-c8="" class="characteristics">
+                            <span class="characteristics">
                                 Pilotos:
                             </span>
                         </p>
@@ -103,17 +103,14 @@
             
             <div class="cards" *ngIf="dataInfo"> 
                 <div class="title">{{dataInfo.name || dataInfo.title}}</div>
-                <img class="image" [src]="getImage(dataInfo)"/> 
+                <img id="info-img" class="image" [src]="getImage(dataInfo)" (error)="notFoundImage('info-img')"/> 
                 <div class="details"> 
                     <p class="category__paragraph" style="margin-top: 15px;" *ngFor="let key of dataInfoKeys" [hidden]="checkedHidden(key)">
-                        <span _ngcontent-c8="" class="characteristics">
+                        <span class="characteristics">
                             {{dataInfoLabels[key]}}:
                         </span>
                         {{dataInfo[key]}}
                     </p>
-                    <!-- <p class="category__paragraph" style="margin-top: 15px;">
-                        <a (click)="handlerMoreInfo()">Mais informações</a>
-                    </p> -->
                 </div>
             </div>
         </div>

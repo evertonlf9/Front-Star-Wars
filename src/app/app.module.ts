@@ -1,14 +1,15 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA  } from '@angular/core';
 
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { NgxSpinnerModule } from 'ngx-spinner';
-import { ToastrModule } from 'ngx-toastr';
+import { NZ_I18N } from 'ng-zorro-antd/i18n';
+import { pt_PT } from 'ng-zorro-antd/i18n';
+import { registerLocaleData } from '@angular/common';
+import pt from '@angular/common/locales/pt';
 
-import { MaterialModule } from './app.material.module';
 import { RoutingModule } from './app.routing.module';
 
 import { AppComponent } from './app.component';
@@ -22,6 +23,7 @@ import { StarshipModule } from '../components/starship/starship.module';
 import { VehicleModule } from '../components/vehicles/vehicles.module';
 import { FilmModule } from '../components/film/film.module';
 
+registerLocaleData(pt);
 
 @NgModule({
   declarations: [
@@ -29,13 +31,10 @@ import { FilmModule } from '../components/film/film.module';
   ],
   imports: [
     BrowserModule,
-    NgxSpinnerModule,
+    FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MaterialModule,
-    FormsModule,
-    NgxSpinnerModule,
-    ToastrModule,
+
     RoutingModule,
     HomeModule,
     CharacterModule,
@@ -45,21 +44,8 @@ import { FilmModule } from '../components/film/film.module';
     StarshipModule,
     VehicleModule,
     FilmModule,
-
-    ToastrModule.forRoot(
-      {
-        timeOut: 10000,
-        positionClass: 'toast-top-center',
-        preventDuplicates: true,
-        closeButton: true,
-        progressBar: true
-      }
-    ),
   ],
-  exports: [
-    MaterialModule
-  ],
-  providers: [],
+  providers: [{ provide: NZ_I18N, useValue: pt_PT }],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
   bootstrap: [AppComponent]
 })

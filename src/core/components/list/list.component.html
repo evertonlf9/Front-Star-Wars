@@ -1,21 +1,25 @@
 <div class="container-body">
     <div class="container">
-        <div class="container-header" *ngIf="data">
-            <input matInput id="search" [disabled]="loading" class="input-search" placeholder="Pesquisar um personagem pelo nome" [value]="search" [(ngModel)]="search" maxlength="255" (keypress)="handlerKeyPress($event)">
+        <div class="container-spin" *ngIf="loading">
+            <nz-spin nzTip="Loading..." [nzSize]="'large'"></nz-spin>
+        </div>
+
+        <div class="container-header" *ngIf="(data && data.length > 0)" [hidden]="loading">
+            <input nz-input id="search" [disabled]="loading" class="input-search" placeholder="Pesquisar um personagem pelo nome" name="search" [(ngModel)]="search" maxlength="255" (keypress)="handlerKeyPress($event)">
             <div class="btn-search" (click)="handlerClickSearch()" (keypress)="handlerKeyPressSearch($event)" tabindex="0" aria-label="Pesquisar" role="button">
-                <mat-icon aria-hidden="true">search</mat-icon>
+                <i nz-icon nzType="search" nzTheme="outline"></i>
             </div>
             <div class="btn-search" (click)="handlerClickClearSearch()" (keypress)="handlerKeyPressClearSearch($event)" tabindex="0" aria-label="Limpar a pesquisa" role="button">
-                <mat-icon aria-hidden="true">clear</mat-icon>
+                <i nz-icon nzType="delete" nzTheme="outline"></i>
             </div>
         </div>
     </div>
-    <div class="container" *ngIf="data">
+    <div class="container" *ngIf="(data && data.length > 0)" [hidden]="loading">
         <div class="cards" [ngClass]="{'cards-red' : classType === 'red' }" [ngStyle]="{'min-height': style ? style : '' }" *ngFor="let item of data; let id = index"> 
-            <div class="title" tabindex="0">{{item.name}}</div>
-            <img [ngClass]="{'image-red' : classType === 'red', 'image' : classType !== 'red'}" [src]="getImage(item)" *ngIf="getImage(item)"/> 
+            <div class="title" tabindex="0">{{item.name || item.title}}</div>
+            <img id="{{'img-' + id }}" [ngClass]="{'image-red' : classType === 'red', 'image' : classType !== 'red'}" [src]="getImage(item)" (error)="notFoundImage(id)"/> 
             <div [ngClass]="{'details-red' : classType === 'red', 'details' : classType !== 'red' }"> 
-                <p class="category__paragraph" *ngFor="let key of dataKeyLabels" tabindex="0">
+                <p class="category__paragraph" *ngFor="let key of dataKeyLabels" tabindex="0"> 
                     <span class="characteristics">
                         {{dataLabels[key]}}:
                     </span> 
@@ -26,17 +30,20 @@
             
         </div>        
     </div>
-    <div class="container" *ngIf="data">
+    <div class="container" *ngIf="(data && data.length > 0)" [hidden]="loading">
 
-        <mat-paginator *ngIf="!loading && totalPages > pageSize"
-            #paginator
-            (page)="pageEvent = handlerChangePaginate($event)"
-            [length]="totalPages"
-            [pageSize]="pageSize"
-            [pageIndex]="currentPage"
-            [showFirstLastButtons]="true"
-            [pageSizeOptions]="itensPerPage">            
-        </mat-paginator>
+        <nz-pagination  
+            *ngIf="!loading && totalPages > pageSize" 
+            [nzPageIndex]="currentPage" 
+            [nzPageSize]="10"
+            [nzTotal]="totalPages"
+            [nzHideOnSinglePage]="true"
+            [nzResponsive]="true"
+            [nzShowTotal]="rangeTemplate"
+            (nzPageIndexChange)="handlerChangePaginate($event)">            
+        </nz-pagination>
+        
+        <ng-template #rangeTemplate let-range="range" let-total> {{ range[0] }}-{{ range[1] }} of {{ total }} items </ng-template>
     </div>
 
     <div class="container" *ngIf="data && data.length === 0">
