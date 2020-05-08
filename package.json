@@ -1,6 +1,7 @@
 {
   "name": "front-star-wars-angular",
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "repository": "https://github.com/evertonlf9/Front-Star-Wars",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",

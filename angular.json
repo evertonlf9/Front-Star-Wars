@@ -132,5 +132,8 @@
       }
     }
   },
-  "defaultProject": "Front-Star-Wars-Angular"
+  "defaultProject": "Front-Star-Wars-Angular",
+  "cli": {
+    "analytics": "7c981927-ffbf-409a-b98e-39c0c1a1fb07"
+  }
 }
