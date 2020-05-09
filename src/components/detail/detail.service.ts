@@ -23,7 +23,7 @@ export class DetailService {
 
   getDetail(id, type):Observable<any> {
 
-    const url = BASE_URL + `${type}/${id}`;
+    const url = BASE_URL + `${type}/${id}/`;
 
     return this.http.get(url)
     .pipe(
@@ -52,9 +52,11 @@ export class DetailService {
       const promisse = [];
       if(data && typeof data !== 'string') {
         data.forEach(url => {
+          url = url.replace('http://', 'https://');
           promisse.push(this.http.get(url))
         });
       }else if(data) {
+        data = data.replace('http://', 'https://');
         promisse.push(this.http.get(data));
       }
   
