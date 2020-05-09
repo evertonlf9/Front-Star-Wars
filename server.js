@@ -3,10 +3,10 @@ const path = require('path');
 
 const app = express();
 
-app.use(express.static('./dist/front-star-wars-angular'));
+app.use(express.static('./dist/Front-Star-Wars-Angular/'));
 
 app.get('/*', (req, res) =>
-    res.sendFile('index.html', {root: 'dist/Front-Star-Wars-Angular/'})
+    res.sendFile(path.join(__dirname + '/dist/Front-Star-Wars-Angular/index.html'))
 );
 
 app.listen(process.env.PORT || 8080);
