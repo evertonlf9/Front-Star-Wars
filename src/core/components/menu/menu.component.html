@@ -6,31 +6,31 @@
                 <span>Menu</span>
             </button>
             <div class="dropdown-content">
-                <a class="menu-link" (click)="handlerNextPage('/home')" (keypress)="handlerKeyPressNextPage($event, '/home')" tabindex="0">
+                <a class="menu-link" [ngClass]="{'active': currentPage === '/home'}" (click)="handlerNextPage('/home')" (keypress)="handlerKeyPressNextPage($event, '/home')" tabindex="0">
                     <i class="material-icons" aria-hidden="true">home</i>
                     <span>Home</span>                    
                 </a>
-                <a class="menu-link-dropdown" (click)="handlerNextPage('/character')" (keypress)="handlerKeyPressNextPage($event, '/character')" tabindex="0">
+                <a class="menu-link-dropdown" [ngClass]="{'active': currentPage === '/character'}" (click)="handlerNextPage('/character')" (keypress)="handlerKeyPressNextPage($event, '/character')" tabindex="0">
                     <i class="material-icons" aria-hidden="true">emoji_people</i>
                     <span>Personagens</span>                    
                 </a>
-                <a class="menu-link-dropdown" (click)="handlerNextPage('/species')" (keypress)="handlerKeyPressNextPage($event, '/species')" tabindex="0">
+                <a class="menu-link-dropdown" [ngClass]="{'active': currentPage === '/species'}" (click)="handlerNextPage('/species')" (keypress)="handlerKeyPressNextPage($event, '/species')" tabindex="0">
                     <i class="material-icons" aria-hidden="true">android</i>
                     <span>Species</span>                      
                 </a>
-                <a class="menu-link-dropdown" (click)="handlerNextPage('/planets')" (keypress)="handlerKeyPressNextPage($event, '/planets')" tabindex="0">
+                <a class="menu-link-dropdown" [ngClass]="{'active': currentPage === '/planets'}" (click)="handlerNextPage('/planets')" (keypress)="handlerKeyPressNextPage($event, '/planets')" tabindex="0">
                     <i class="material-icons" aria-hidden="true">language</i>
                     <span>Planetas</span>   
                 </a>
-                <a class="menu-link-dropdown" (click)="handlerNextPage('/films')" (keypress)="handlerKeyPressNextPage($event, '/films')" tabindex="0">
+                <a class="menu-link-dropdown" [ngClass]="{'active': currentPage === '/films'}" (click)="handlerNextPage('/films')" (keypress)="handlerKeyPressNextPage($event, '/films')" tabindex="0">
                     <i class="material-icons" aria-hidden="true">theaters</i>
                     <span>Filmes</span>   
                 </a>
-                <a class="menu-link-dropdown" (click)="handlerNextPage('/vehicles')" (keypress)="handlerKeyPressNextPage($event, '/vehicles')" tabindex="0">
+                <a class="menu-link-dropdown" [ngClass]="{'active': currentPage === '/vehicles'}" (click)="handlerNextPage('/vehicles')" (keypress)="handlerKeyPressNextPage($event, '/vehicles')" tabindex="0">
                     <i class="material-icons">time_to_leave</i>
                     <span>Veiculos</span>   
                 </a>
-                <a class="menu-link-dropdown" (click)="handlerNextPage('/starships')" (keypress)="handlerKeyPressNextPage($event, '/starships')" tabindex="0">
+                <a class="menu-link-dropdown" [ngClass]="{'active': currentPage === '/starships'}" (click)="handlerNextPage('/starships')" (keypress)="handlerKeyPressNextPage($event, '/starships')" tabindex="0">
                     <i class="material-icons" aria-hidden="true">airplanemode_active</i>
                     <span>Naves Estelares</span>  
                 </a>

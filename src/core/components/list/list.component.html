@@ -4,7 +4,7 @@
             <nz-spin nzTip="Loading..." [nzSize]="'large'"></nz-spin>
         </div>
 
-        <div class="container-header" *ngIf="(data && data.length > 0)" [hidden]="loading">
+        <div class="container-header">
             <input nz-input id="search" [disabled]="loading" class="input-search" placeholder="Pesquisar um personagem pelo nome" name="search" [(ngModel)]="search" maxlength="255" (keypress)="handlerKeyPress($event)">
             <div class="btn-search" (click)="handlerClickSearch()" (keypress)="handlerKeyPressSearch($event)" tabindex="0" aria-label="Pesquisar" role="button">
                 <i nz-icon nzType="search" nzTheme="outline"></i>
@@ -14,7 +14,7 @@
             </div>
         </div>
     </div>
-    <div class="container" *ngIf="(data && data.length > 0)" [hidden]="loading">
+    <div class="container" *ngIf="(data && data.length > 0)">
         <div class="cards" [ngClass]="{'cards-red' : classType === 'red' }" [ngStyle]="{'min-height': style ? style : '' }" *ngFor="let item of data; let id = index"> 
             <div class="title" tabindex="0">{{item.name || item.title}}</div>
             <img id="{{'img-' + id }}" [ngClass]="{'image-red' : classType === 'red', 'image' : classType !== 'red'}" [src]="getImage(item)" (error)="notFoundImage(id)"/> 
@@ -30,7 +30,7 @@
             
         </div>        
     </div>
-    <div class="container" *ngIf="(data && data.length > 0)" [hidden]="loading">
+    <div class="container" *ngIf="(data && data.length > 0)">
 
         <nz-pagination  
             *ngIf="!loading && totalPages > pageSize" 

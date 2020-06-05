@@ -49,12 +49,21 @@ body {
     color: $yellow;
 }
 
+.ant-pagination-total-text {
+    display: inherit;
+    text-align: center;
+}
+
+
+.ant-spin-nested-loading {
+    top: 35%;
+}
+
 .container-spin {
     height: 100%;
     width: 100%;
     position: absolute;
     text-align: center;
-    margin: 30% 0;
 }
 
 .ant-pagination {
